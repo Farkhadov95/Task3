@@ -2,14 +2,18 @@ class WinnerPicker {
     static getWinnersList = (moves) => {
         const movesCount = args.length;
         const half = Math.floor(movesCount / 2);
-        const winners = [['Move:', 'Beats:']];
+        const winners = [];
         moves.forEach((move, index) => {
-            const nextMoves = [move];
+            const moveArray = [move];
+            const nextMoves = [];
             for (let i = 1; i <= half; i++) {
                 nextMoves.push(moves[(index + i) % movesCount]);
             }
-            winners.push(nextMoves);
+            moveArray.push(nextMoves);
+            winners.push(moveArray);
         });
+
+        console.log(winners);
         return winners;
     }
 

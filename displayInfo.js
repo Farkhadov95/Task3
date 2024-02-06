@@ -1,23 +1,17 @@
+var { AsciiTable3, AlignmentEnum } = require('ascii-table3');
+
+
+
 class DisplayInfo {
     static displayTable = (data) => {
-        const columnWidths = data.reduce((acc, row) => {
-            row.forEach((cell, columnIndex) => {
-                acc[columnIndex] = Math.max(acc[columnIndex] || 0, String(cell).length);
-            });
-            return acc;
-        }, []);
+        // create table
+        var table =
+            new AsciiTable3()
+                .setHeading('Move:', 'Beats:')
+                .setAlign(3, AlignmentEnum.CENTER)
+                .addRowMatrix(data);
 
-        const separator = '+' + columnWidths.map(width => '-'.repeat(width + 3)).join('+') + '+';
-
-        console.log(separator);
-        data.forEach(row => {
-            const cells = row.map((cell, columnIndex) => {
-                const paddedCell = String(cell).padEnd(columnWidths[columnIndex]);
-                return `| ${paddedCell} `;
-            });
-            console.log(cells.join('|') + '|');
-            console.log(separator);
-        });
+        console.log(table.toString());
     };
 
     static displayMenu = (moves) => {
