@@ -4,7 +4,6 @@ var { AsciiTable3, AlignmentEnum } = require('ascii-table3');
 
 class DisplayInfo {
     static displayTable = (data) => {
-        // create table
         var table =
             new AsciiTable3()
                 .setHeading('Move:', 'Beats:')
